@@ -1,5 +1,6 @@
 bases:
-- github.com/argoproj/argo-cd//manifests/cluster-install?ref=release-0.10
+#- github.com/argoproj/argo-cd//manifests/cluster-install?ref=release-0.10
+- github.com/argoproj/argo-cd//manifests/cluster-install
 
 patchesStrategicMerge:
 - patches/jesse.yaml
