@@ -1,6 +1,11 @@
 bases:
 - ../jesse-dev
 
+resources:
+- resources/argo-cd-cert.yaml
+- resources/argo-cd-issuer.yaml
+- resources/argo-cd-ingress.yaml
+
 patchesStrategicMerge:
 - patches/argocd-cm.yaml
 - patches/argocd-rbac-cm.yaml
