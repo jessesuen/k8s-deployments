@@ -1,0 +1,9 @@
+resources:
+- base/argo-events-cluster-roles.yaml
+- base/argo-events-sa.yaml
+- base/gateway-controller-configmap.yaml
+- base/gateway-controller-deployment.yaml
+- base/gateway-crd.yaml
+- base/sensor-controller-configmap.yaml
+- base/sensor-controller-deployment.yaml
+- base/sensor-crd.yaml
