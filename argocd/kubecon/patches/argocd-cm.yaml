@@ -4,7 +4,7 @@ metadata:
   name: argocd-cm
 data:
   # Argo CD's externally facing base URL. Required for configuring SSO
-  url: https://35.203.189.170
+  url: https://argo-cd-kubecon.apps.argoproj.io
 
   # A dex connector configuration. See documentation on how to configure SSO:
   # https://github.com/argoproj/argo-cd/blob/master/docs/sso.md#2-configure-argocd-for-sso
