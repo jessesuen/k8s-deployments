@@ -1,2 +1,6 @@
 bases:
 - ../jesse-dev
+
+patchesStrategicMerge:
+- patches/argocd-cm.yaml
+- patches/argocd-rbac-cm.yaml
