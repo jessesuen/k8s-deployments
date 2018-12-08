@@ -8,4 +8,11 @@ spec:
     email: jessesuen@gmail.com
     privateKeySecretRef:
       name: letsencrypt
-    http01: {}
+    dns01:
+      providers:
+      - name: clouddns-provider
+        clouddns:
+          project: alex-sb
+          serviceAccountSecretRef:
+            name: argocd-secret
+            key: clouddns.alex-sb.service-account.json

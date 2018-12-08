@@ -12,7 +12,7 @@ spec:
   - argo-cd-kubecon.apps.argoproj.io
   acme:
     config:
-    - http01:
-        ingress: argo-cd-ingress
+    - dns01:
+        provider: clouddns-provider
       domains:
       - argo-cd-kubecon.apps.argoproj.io

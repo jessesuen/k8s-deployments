@@ -1,7 +1,5 @@
 bases:
-#- github.com/argoproj/argo-cd//manifests/cluster-install?ref=release-0.10
-#- github.com/argoproj/argo-cd//manifests/cluster-install
-- github.com/jessesuen/argo-cd//manifests/cluster-install?ref=rbac-roles
+- github.com/argoproj/argo-cd//manifests/cluster-install
 
 patchesStrategicMerge:
 - patches/jesse.yaml
