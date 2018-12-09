@@ -2,7 +2,6 @@ apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
   name: workflow-controller
-  namespace: argo
 spec:
   template:
     spec:
@@ -14,3 +13,11 @@ spec:
         - workflow-controller-configmap
         - --executor-image
         - jessesuen/argoexec:latest
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: argo-ui
+spec:
+  type: LoadBalancer
