@@ -1,5 +1,5 @@
 bases:
-- ../jesse-dev
+- github.com/argoproj/argo-cd//manifests/cluster-install?ref=v0.11.0-rc1
 
 resources:
 - resources/argo-cd-cert.yaml
