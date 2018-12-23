@@ -28,12 +28,12 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: application-controller
+  name: argocd-application-controller
 spec:
   template:
     spec:
       containers:
-      - name: application-controller
+      - name: argocd-application-controller
         image: jessesuen/argocd:latest
 
 ---
