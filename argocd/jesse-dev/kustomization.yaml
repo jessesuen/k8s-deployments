@@ -3,3 +3,4 @@ bases:
 
 patchesStrategicMerge:
 - patches/jesse.yaml
+- patches/argocd-cm.yaml
