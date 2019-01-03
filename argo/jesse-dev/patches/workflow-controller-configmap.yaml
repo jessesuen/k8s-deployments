@@ -16,7 +16,7 @@ data:
           /{{workflow.creationTimestamp.d}}\
           /{{workflow.name}}\
           /{{pod.name}}"
-        insecure: false
+        insecure: true
         accessKeySecret:
           name: minio
           key: accesskey
