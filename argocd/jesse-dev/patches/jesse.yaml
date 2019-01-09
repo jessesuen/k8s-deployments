@@ -46,4 +46,4 @@ spec:
     spec:
       initContainers:
       - name: copyutil
-        image: jessesuen/argocd-server:latest
+        image: jessesuen/argocd:latest
