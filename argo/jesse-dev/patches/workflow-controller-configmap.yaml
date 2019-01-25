@@ -8,7 +8,7 @@ data:
     artifactRepository:
       archiveLogs: true
       s3:
-        endpoint: minio.default:9000
+        endpoint: argo-artifacts.default:9000
         bucket: my-bucket
         keyFormat: "my-artifacts\
           /{{workflow.creationTimestamp.Y}}\
@@ -18,8 +18,12 @@ data:
           /{{pod.name}}"
         insecure: true
         accessKeySecret:
-          name: minio
+          name: argo-artifacts
           key: accesskey
         secretKeySecret:
-          name: minio
+          name: argo-artifacts
           key: secretkey
+    executor:
+      args:
+      - --loglevel
+      - debug
