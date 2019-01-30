@@ -5,7 +5,7 @@ gateways:
 security:
   enabled: false
 sidecarInjectorWebhook:
-  enabled: false
+  enabled: true
 galley:
   enabled: false
 prometheus:
