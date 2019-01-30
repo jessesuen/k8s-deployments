@@ -1,7 +1,7 @@
 pilot:
   enabled: true
 gateways:
-  enabled: false
+  enabled: true
 security:
   enabled: false
 sidecarInjectorWebhook:
