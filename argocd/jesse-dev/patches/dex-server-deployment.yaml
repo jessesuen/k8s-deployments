@@ -1,0 +1,11 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dex-server
+spec:
+  revisionHistoryLimit: 2
+  template:
+    spec:
+      containers:
+      - name: dex
+        image: quay.io/dexidp/dex:v2.14.0
