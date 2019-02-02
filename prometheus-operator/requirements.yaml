@@ -1,4 +1,4 @@
 dependencies:
-- name: kube-state-metrics
-  version: 0.13.0
+- name: prometheus-operator
+  version: 2.1.5
   repository: "@stable"
