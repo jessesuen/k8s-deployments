@@ -8,3 +8,6 @@ patchesStrategicMerge:
 - patches/argocd-dex-server-deployment.yaml
 - patches/jesse.yaml
 - patches/argocd-cm.yaml
+
+resources:
+- resources/argocd-server-ingress.yaml
