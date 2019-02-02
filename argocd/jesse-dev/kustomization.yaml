@@ -5,6 +5,6 @@ patchesStrategicMerge:
 - patches/argocd-application-controller-deployment.yaml
 - patches/argocd-repo-server-deployment.yaml
 - patches/argocd-server-deployment.yaml
-- patches/dex-server-deployment.yaml
+- patches/argocd-dex-server-deployment.yaml
 - patches/jesse.yaml
 - patches/argocd-cm.yaml

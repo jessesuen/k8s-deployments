@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dex-server
+  name: argocd-dex-server
 spec:
   revisionHistoryLimit: 2
   template:
