@@ -1,6 +1,0 @@
-kubeStateMetrics:
-  enabled: false
-
-prometheus-operator:
-  kubeStateMetrics:
-    enabled: false
