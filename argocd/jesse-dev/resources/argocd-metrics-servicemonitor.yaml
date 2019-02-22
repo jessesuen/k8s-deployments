@@ -7,6 +7,6 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: argocd-metrics
+      app.kubernetes.io/component: argocd-metrics
   endpoints:
-  - port: http
+  - port: metrics
