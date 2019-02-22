@@ -1,5 +1,5 @@
 bases:
-- github.com/argoproj/argo-cd//manifests/cluster-install
+- github.com/jessesuen/argo-cd//manifests/cluster-install?ref=prometheus-metrics
 
 patchesStrategicMerge:
 - patches/argocd-application-controller-deployment.yaml
@@ -10,4 +10,6 @@ patchesStrategicMerge:
 - patches/argocd-cm.yaml
 
 resources:
+- resources/argocd-metrics-servicemonitor.yaml
+- resources/argocd-server-metrics-servicemonitor.yaml
 - resources/argocd-server-ingress.yaml
