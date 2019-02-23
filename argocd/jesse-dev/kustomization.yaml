@@ -1,15 +1,26 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
 bases:
-- github.com/jessesuen/argo-cd//manifests/cluster-install?ref=prometheus-metrics
+#- github.com/jessesuen/argo-cd//manifests/ha/cluster-install?ref=kustomize2
+- upstream
 
 patchesStrategicMerge:
 - patches/argocd-application-controller-deployment.yaml
 - patches/argocd-repo-server-deployment.yaml
 - patches/argocd-server-deployment.yaml
 - patches/argocd-dex-server-deployment.yaml
-- patches/jesse.yaml
 - patches/argocd-cm.yaml
 
 resources:
 - resources/argocd-metrics-servicemonitor.yaml
 - resources/argocd-server-metrics-servicemonitor.yaml
 - resources/argocd-server-ingress.yaml
+
+images:
+- name: argoproj/argocd
+  newName: jessesuen/argocd
+  newTag: latest
+- name: argoproj/argocd-ui
+  newName: jessesuen/argocd-ui
+  newTag: latest
