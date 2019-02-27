@@ -1,0 +1,6 @@
+namePrefix: pre-post-sync-
+
+resources:
+- guestbook-ui.yaml
+- pre-sync-job.yaml
+- post-sync-job.yaml
