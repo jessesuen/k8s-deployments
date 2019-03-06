@@ -3,6 +3,8 @@ kind: ConfigMap
 metadata:
   name: argocd-cm
 data:
+  url: https://jesse-test.dev.argoproj.io
+
   helm.repositories: |
     - url: https://storage.googleapis.com/istio-prerelease/daily-build/master-latest-daily/charts
       name: istio.io
