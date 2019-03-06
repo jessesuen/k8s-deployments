@@ -11,6 +11,7 @@ patchesStrategicMerge:
 - patches/argocd-server-deployment.yaml
 - patches/argocd-dex-server-deployment.yaml
 - patches/argocd-cm.yaml
+- patches/argocd-rbac-cm.yaml
 
 resources:
 - resources/argocd-metrics-servicemonitor.yaml
