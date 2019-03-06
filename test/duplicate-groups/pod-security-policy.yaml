@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  name: extensions-psp
+spec:
+  allowPrivilegeEscalation: false
+
+---
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  name: extensions-psp
+spec:
+  allowPrivilegeEscalation: false
