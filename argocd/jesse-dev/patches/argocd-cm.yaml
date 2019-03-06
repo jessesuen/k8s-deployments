@@ -19,3 +19,5 @@ data:
           clientSecret: $dex.github.clientSecret
           orgs:
           - name: argoproj
+            teams:
+            - argo-cd-admins
