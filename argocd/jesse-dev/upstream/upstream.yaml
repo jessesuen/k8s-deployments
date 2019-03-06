@@ -646,7 +646,7 @@ spec:
         - argocd-redis-ha-announce-2:26379
         - --sentinelmaster
         - argocd
-        image: argoproj/argocd:latest
+        image: argoproj/argocd:v0.12.0-rc2
         imagePullPolicy: Always
         name: argocd-application-controller
         ports:
@@ -693,7 +693,7 @@ spec:
         - cp
         - /usr/local/bin/argocd-util
         - /shared
-        image: argoproj/argocd:latest
+        image: argoproj/argocd:v0.12.0-rc2
         imagePullPolicy: Always
         name: copyutil
         volumeMounts:
@@ -727,20 +727,14 @@ spec:
           preferredDuringSchedulingIgnoredDuringExecution:
           - podAffinityTerm:
               labelSelector:
-                matchExpressions:
-                - key: app
-                  operator: In
-                  values:
-                  - argocd-repo-server
+                matchLabels:
+                  app.kubernetes.io/name: argocd-repo-server
               topologyKey: failure-domain.beta.kubernetes.io/zone
             weight: 100
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
-              matchExpressions:
-              - key: app
-                operator: In
-                values:
-                - argocd-repo-server
+              matchLabels:
+                app.kubernetes.io/name: argocd-repo-server
             topologyKey: kubernetes.io/hostname
       automountServiceAccountToken: false
       containers:
@@ -754,7 +748,7 @@ spec:
         - argocd-redis-ha-announce-2:26379
         - --sentinelmaster
         - argocd
-        image: argoproj/argocd:latest
+        image: argoproj/argocd:v0.12.0-rc2
         imagePullPolicy: Always
         name: argocd-repo-server
         ports:
@@ -788,20 +782,14 @@ spec:
           preferredDuringSchedulingIgnoredDuringExecution:
           - podAffinityTerm:
               labelSelector:
-                matchExpressions:
-                - key: app
-                  operator: In
-                  values:
-                  - argocd-server
+                matchLabels:
+                  app.kubernetes.io/name: argocd-server
               topologyKey: failure-domain.beta.kubernetes.io/zone
             weight: 100
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
-              matchExpressions:
-              - key: app
-                operator: In
-                values:
-                - argocd-server
+              matchLabels:
+                app.kubernetes.io/name: argocd-server
             topologyKey: kubernetes.io/hostname
       containers:
       - command:
@@ -816,7 +804,7 @@ spec:
         - argocd-redis-ha-announce-2:26379
         - --sentinelmaster
         - argocd
-        image: argoproj/argocd:latest
+        image: argoproj/argocd:v0.12.0-rc2
         imagePullPolicy: Always
         name: argocd-server
         ports:
@@ -837,7 +825,7 @@ spec:
         - -r
         - /app
         - /shared
-        image: argoproj/argocd-ui:latest
+        image: argoproj/argocd-ui:v0.12.0-rc2
         imagePullPolicy: Always
         name: ui
         volumeMounts:

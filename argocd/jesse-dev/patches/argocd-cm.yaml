@@ -6,3 +6,14 @@ data:
   helm.repositories: |
     - url: https://storage.googleapis.com/istio-prerelease/daily-build/master-latest-daily/charts
       name: istio.io
+
+  dex.config: |
+    connectors:
+      - type: github
+        id: github
+        name: GitHub
+        config:
+          clientID: ebccc08529e628cdf00d
+          clientSecret: $dex.github.clientSecret
+          orgs:
+          - name: argoproj
