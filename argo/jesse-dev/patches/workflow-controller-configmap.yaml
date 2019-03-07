@@ -6,9 +6,9 @@ data:
   config: |
     parallelism: 3
     artifactRepository:
-      archiveLogs: true
+      #archiveLogs: true
       s3:
-        endpoint: argo-artifacts.default:9000
+        endpoint: minio.default:9000
         bucket: my-bucket
         keyFormat: "my-artifacts\
           /{{workflow.creationTimestamp.Y}}\
@@ -18,10 +18,10 @@ data:
           /{{pod.name}}"
         insecure: true
         accessKeySecret:
-          name: argo-artifacts
+          name: minio
           key: accesskey
         secretKeySecret:
-          name: argo-artifacts
+          name: minio
           key: secretkey
     executor:
       args:

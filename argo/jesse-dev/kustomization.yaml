@@ -5,6 +5,6 @@ patchesStrategicMerge:
 - patches/jesse.yaml
 - patches/workflow-controller-configmap.yaml
 
-#resources:
-#- resources/default-admin.yaml
+resources:
+- resources/default-admin.yaml
 
