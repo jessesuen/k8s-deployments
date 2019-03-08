@@ -7,12 +7,12 @@ spec:
   issuerRef:
     name: argo-cd-issuer
     kind: Issuer
-  commonName: argo-cd-kubecon.apps.argoproj.io
+  commonName: jesse-test.dev.argoproj.io
   dnsNames:
-  - argo-cd-kubecon.apps.argoproj.io
+  - jesse-test.dev.argoproj.io
   acme:
     config:
     - dns01:
         provider: clouddns-provider
       domains:
-      - argo-cd-kubecon.apps.argoproj.io
+      - jesse-test.dev.argoproj.io

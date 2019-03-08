@@ -12,7 +12,7 @@ spec:
       providers:
       - name: clouddns-provider
         clouddns:
-          project: alex-sb
+          project: jesse-sb
           serviceAccountSecretRef:
             name: argocd-secret
-            key: clouddns.alex-sb.service-account.json
+            key: clouddns.jesse-sb.service-account.json
