@@ -1,0 +1,24 @@
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  labels:
+    app.kubernetes.io/instance: kube-prometheus
+    app.kubernetes.io/name: prometheus
+    app.kubernetes.io/version: v2.7.2
+  name: kube-prometheus
+spec:
+  podMetadata:
+    labels:
+      app.kubernetes.io/component: prometheus
+      app.kubernetes.io/instance: kube-prometheus
+      app.kubernetes.io/name: prometheus
+      app.kubernetes.io/version: v2.7.2
+      thanos-store-api: "true"
+  replicas: 1
+  storage:
+    volumeClaimTemplate:
+      spec:
+        resources:
+          requests:
+            storage: 5Gi
+        storageClassName: standard
