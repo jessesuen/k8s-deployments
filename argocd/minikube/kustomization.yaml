@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+bases:
+- upstream
+
+patches:
+- patches/argocd-server-service.yaml
+
+images:
+- name: argoproj/argocd
+  newName: jessesuen/argocd
+  newTag: latest
+- name: argoproj/argocd-ui
+  newName: jessesuen/argocd-ui
+  newTag: latest
