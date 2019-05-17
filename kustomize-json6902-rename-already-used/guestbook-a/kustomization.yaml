@@ -1,0 +1,9 @@
+bases:
+- ../template
+
+patchesJson6902:
+- target:
+    version: v1
+    kind: Pod
+    name: guestbook
+  path: rename.yaml
