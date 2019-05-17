@@ -1,0 +1,6 @@
+bases:
+- ../guestbook-a
+- ../guestbook-b
+
+patchesStrategicMerge:
+- patch-a.yaml
