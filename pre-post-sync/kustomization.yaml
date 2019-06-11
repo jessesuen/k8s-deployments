@@ -1,6 +1,7 @@
 namePrefix: pre-post-sync-
 
 resources:
+- guestbook-ui-deployment-2.yaml
 - guestbook-ui-deployment.yaml
 - guestbook-ui-svc.yaml
 #- pre-sync-job.yaml
