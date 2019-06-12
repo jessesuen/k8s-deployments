@@ -4,13 +4,19 @@ kind: Kustomization
 bases:
 - upstream
 
+resources:
+- argocd-namespace.yaml
+
 patches:
 - patches/argocd-server-service.yaml
+- patches/argocd-secret.yaml
 
-images:
-- name: argoproj/argocd
-  newName: jessesuen/argocd
-  newTag: latest
-- name: argoproj/argocd-ui
-  newName: jessesuen/argocd-ui
-  newTag: latest
+namespace: argocd
+
+# images:
+# - name: argoproj/argocd
+#   newName: jessesuen/argocd
+#   newTag: latest
+# - name: argoproj/argocd-ui
+#   newName: jessesuen/argocd-ui
+#   newTag: latest
