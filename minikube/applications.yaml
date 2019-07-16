@@ -83,12 +83,13 @@ spec:
     repoURL: https://github.com/helm/charts.git
     targetRevision: HEAD
     path: stable/minio
-    parameters:
-    - {name: service.type, value: LoadBalancer}
-    - {name: defaultBucket.enabled, value: "true"}
-    - {name: defaultBucket.name, value: "my-bucket"}
-    - {name: persistence.enabled, value: "false"}
-    - {name: fullnameOverride, value: "argo-artifacts"}
+    helm:
+      parameters:
+      - {name: service.type, value: LoadBalancer}
+      - {name: defaultBucket.enabled, value: "true"}
+      - {name: defaultBucket.name, value: my-bucket}
+      - {name: persistence.enabled, value: "false"}
+      - {name: fullnameOverride, value: argo-artifacts}
   destination:
     server: https://kubernetes.default.svc
     namespace: default
