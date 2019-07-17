@@ -3,6 +3,6 @@ kind: Kustomization
 
 resources:
 - argo-namespaces.yaml
-- applications.yaml
+- apps.yaml
 
 namespace: argocd
