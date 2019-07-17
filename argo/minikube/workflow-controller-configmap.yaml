@@ -10,8 +10,8 @@ data:
     artifactRepository:
       #archiveLogs: true
       s3:
-        endpoint: argo-artifacts-minio.default:9000
-        bucket: bucket
+        endpoint: argo-artifacts.default:9000
+        bucket: my-bucket
         keyFormat: "artifacts\
           /{{workflow.creationTimestamp.Y}}\
           /{{workflow.creationTimestamp.m}}\
@@ -20,10 +20,10 @@ data:
           /{{pod.name}}"
         insecure: true
         accessKeySecret:
-          name: argo-artifacts-minio
+          name: argo-artifacts
           key: accesskey
         secretKeySecret:
-          name: argo-artifacts-minio
+          name: argo-artifacts
           key: secretkey
     executor:
       args:
