@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-of-apps
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/jessesuen/k8s-deployments.git
+    targetRevision: HEAD
+    path: minikube/apps
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd

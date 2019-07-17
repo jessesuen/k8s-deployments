@@ -7,7 +7,7 @@ spec:
   source:
     repoURL: https://github.com/jessesuen/k8s-deployments.git
     targetRevision: HEAD
-    path: minikube/argocd
+    path: argocd/minikube
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
@@ -67,7 +67,7 @@ spec:
   source:
     repoURL: https://github.com/jessesuen/k8s-deployments.git
     targetRevision: HEAD
-    path: minikube/tiller
+    path: tiller
   destination:
     server: https://kubernetes.default.svc
     namespace: default
