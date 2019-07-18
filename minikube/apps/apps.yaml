@@ -72,19 +72,14 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: minio
+  name: argo-artifacts
 spec:
   project: default
   source:
     repoURL: https://github.com/helm/charts.git
     path: stable/minio
-    helm:
-      parameters:
-      - {name: service.type, value: LoadBalancer}
-      - {name: defaultBucket.enabled, value: "true"}
-      - {name: defaultBucket.name, value: my-bucket}
-      - {name: persistence.enabled, value: "false"}
-      - {name: fullnameOverride, value: argo-artifacts}
+    plugin:
+      name: mypluginname
   destination:
     server: https://kubernetes.default.svc
     namespace: default

@@ -1,0 +1,8 @@
+minio:
+  service:
+    type: LoadBalancer
+  defaultBucket:
+    enabled: true
+    name: my-bucket
+  persistence:
+    enabled: false
