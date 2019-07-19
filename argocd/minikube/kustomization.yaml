@@ -15,10 +15,10 @@ patches:
 
 namespace: argocd
 
-# images:
-# - name: argoproj/argocd
-#   newName: jessesuen/argocd
-#   newTag: latest
+images:
+- name: argoproj/argocd
+  newName: jessesuen/argocd
+  newTag: latest
 # - name: argoproj/argocd-ui
 #   newName: jessesuen/argocd-ui
 #   newTag: latest
