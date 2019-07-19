@@ -88,10 +88,10 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/helm/charts.git
-    path: stable/minio
+    repoURL: https://github.com/jessesuen/k8s-deployments.git
+    path: minio
     plugin:
-      name: mypluginname
+      name: kustomized-helm
   destination:
     server: https://kubernetes.default.svc
     namespace: default

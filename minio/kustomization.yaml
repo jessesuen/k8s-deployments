@@ -6,3 +6,11 @@ resources:
 
 patchesStrategicMerge:
 - make-bucket-job.yaml
+
+patchesJson6902:
+- target:
+    group: batch
+    version: v1
+    kind: Job
+    name: argo-artifacts-minio-make-bucket-job
+  path: remove-helm-hooks.yaml
