@@ -45,6 +45,58 @@ spec:
     server: https://kubernetes.default.svc
     namespace: argo
 
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cert-manager
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  # annotations:
+  #   argoccd.argoproj.io/sync-wave: "-1"
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/jetstack/cert-manager.git
+    path: deploy/charts/cert-manager
+    targetRevision: release-0.9
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cert-manager
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: nginx-ingress
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx-ingress
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/jessesuen/k8s-deployments.git
+    path: nginx-ingress
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: nginx-ingress
+  ignoreDifferences:
+  - group: ""
+    kind: Service
+    jsonPointers:
+    - /spec/clusterIP
+
 # ---
 # apiVersion: argoproj.io/v1alpha1
 # kind: Application
