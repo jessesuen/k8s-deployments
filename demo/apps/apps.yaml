@@ -109,6 +109,22 @@ metadata:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  name: istio-init
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/jessesuen/k8s-deployments.git
+    path: istio/init
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: istio-system
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: istio
   finalizers:
   - resources-finalizer.argocd.argoproj.io
