@@ -6,9 +6,9 @@ bases:
 
 patchesStrategicMerge:
 - workflow-controller-configmap.yaml
-- argo-ui.yaml
+- ../common/patches/argo-ui.yaml
 
 resources:
-- default-admin.yaml
-- argo-ns.yaml
+- ../common/resources/argo-ns.yaml
+- ../common/resources/default-admin.yaml
 

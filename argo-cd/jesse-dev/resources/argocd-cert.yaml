@@ -1,0 +1,18 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: argo-cd-cert
+spec:
+  secretName: argocd-secret
+  issuerRef:
+    name: argo-cd-issuer
+    kind: Issuer
+  commonName: jesse-test.dev.argoproj.io
+  dnsNames:
+  - jesse-test.dev.argoproj.io
+  acme:
+    config:
+    - dns01:
+        provider: clouddns-provider
+      domains:
+      - jesse-test.dev.argoproj.io

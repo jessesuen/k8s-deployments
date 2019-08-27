@@ -8,7 +8,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/jessesuen/k8s-deployments.git
-    path: argocd/minikube
+    path: argo-cd/minikube
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
@@ -41,7 +41,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/jessesuen/k8s-deployments.git
-    path: argo/minikube
+    path: argo-workflows/minikube
   destination:
     server: https://kubernetes.default.svc
     namespace: argo
