@@ -11,7 +11,7 @@ data:
         id: github
         name: GitHub
         config:
-          clientID: ebccc08529e628cdf00d
+          clientID: f924b0c994fa91846095
           clientSecret: $dex.github.clientSecret
           orgs:
           - name: argoproj
