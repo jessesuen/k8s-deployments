@@ -8,7 +8,7 @@ metadata:
   name: argocd-server
 spec:
   rules:
-  - host: jesse-test.dev.argoproj.io
+  - host: argocd.dev.argoproj.io
     http:
       paths:
       - backend:
