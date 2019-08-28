@@ -60,14 +60,11 @@ metadata:
   name: cert-manager
   finalizers:
   - resources-finalizer.argocd.argoproj.io
-  # annotations:
-  #   argoccd.argoproj.io/sync-wave: "-1"
 spec:
   project: default
   source:
-    repoURL: https://github.com/jetstack/cert-manager.git
-    path: deploy/charts/cert-manager
-    #targetRevision: release-0.9
+    repoURL: https://github.com/jessesuen/k8s-deployments.git
+    path: cert-manager
   destination:
     server: https://kubernetes.default.svc
     namespace: cert-manager
@@ -185,7 +182,7 @@ spec:
 # apiVersion: argoproj.io/v1alpha1
 # kind: Application
 # metadata:
-#   name: argo-artifacts
+#   name: minio
 #   finalizers:
 #   - resources-finalizer.argocd.argoproj.io
 # spec:
