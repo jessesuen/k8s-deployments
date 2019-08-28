@@ -132,10 +132,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/jessesuen/k8s-deployments.git
-    path: istio/demo
-    helm:
-      valuesFiles:
-      - values-istio-demo.yaml
+    path: istio/minimal
   destination:
     server: https://kubernetes.default.svc
     namespace: istio-system
