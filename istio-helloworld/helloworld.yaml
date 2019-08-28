@@ -6,17 +6,22 @@ metadata:
     app: helloworld
 spec:
   ports:
-  - port: 5000
-    name: http
+  - name: http
+    port: 80
+    targetPort: 80
   selector:
     app: helloworld
+
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: helloworld-v1
 spec:
-  replicas: 1
+  selector:
+    matchLabels:
+      app: helloworld
+      version: v1
   template:
     metadata:
       annotations:
@@ -27,20 +32,25 @@ spec:
     spec:
       containers:
       - name: helloworld
-        image: istio/examples-helloworld-v1
+        image: alexmt/rollouts-demo:blue
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
         resources:
           requests:
-            cpu: "100m"
-        imagePullPolicy: IfNotPresent #Always
-        ports:
-        - containerPort: 5000
+            memory: 32Mi
+            cpu: 5m
+
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: helloworld-v2
 spec:
-  replicas: 1
+  selector:
+    matchLabels:
+      app: helloworld
+      version: v2
   template:
     metadata:
       annotations:
@@ -51,10 +61,11 @@ spec:
     spec:
       containers:
       - name: helloworld
-        image: istio/examples-helloworld-v2
+        image: alexmt/rollouts-demo:yellow
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
         resources:
           requests:
-            cpu: "100m"
-        imagePullPolicy: IfNotPresent #Always
-        ports:
-        - containerPort: 5000
+            memory: 32Mi
+            cpu: 5m

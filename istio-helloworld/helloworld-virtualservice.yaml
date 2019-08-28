@@ -8,10 +8,7 @@ spec:
   gateways:
   - helloworld-gateway
   http:
-  - match:
-    - uri:
-        exact: /hello
-    route:
+  - route:
     - destination:
         host: helloworld
         subset: v1
