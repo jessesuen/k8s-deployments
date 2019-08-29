@@ -1,0 +1,54 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: istio-rollout-destination
+  # will be created and owned by rollout object
+  ownerReferences:
+  - apiVersion: argoproj.io/v1alpha1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Rollout
+    name: istio-rollout
+    uid: f5645d32-ca34-11e9-9e69-42010aa8005f
+spec:
+  # populated from rollout spec.strategy.canary.istio.service
+  host: istio-rollout-svc
+
+  # subsets contains a list of all current rollouts-pod-template-hash in the Rollout
+  subsets:
+  - name: 5dfd6b49c4
+    labels:
+      rollouts-pod-template-hash: 5dfd6b49c4
+  - name: 74cbbdb7f4
+    labels:
+      rollouts-pod-template-hash: 74cbbdb7f4
+
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: istio-rollout-virtualsvc
+  # will be created and owned by rollout object
+  ownerReferences:
+  - apiVersion: argoproj.io/v1alpha1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Rollout
+    name: istio-rollout
+    uid: f5645d32-ca34-11e9-9e69-42010aa8005f
+spec:
+  gateways:
+  - istio-rollout-gateway # populated from rollout spec.strategy.canary.istio.gateway
+  hosts:
+  - istio-rollout.dev.argoproj.io # populated from the hosts section of the gateway specified above
+  http:
+  # route will contain at most two rules, populated from the stable and canary pod hashes
+  - route:
+    - destination:
+        host: istio-rollout-svc # populated from spec.strategy.canary.istio.service
+        subset: 5dfd6b49c4
+      weight: 80
+    - destination:
+        host: istio-rollout-svc
+        subset: 74cbbdb7f4
+      weight: 20

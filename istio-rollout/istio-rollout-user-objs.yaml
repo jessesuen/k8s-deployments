@@ -1,0 +1,74 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: istio-rollout
+  labels:
+    app: istio-rollout
+spec:
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: istio-rollout
+  template:
+    metadata:
+      labels:
+        app: istio-rollout
+      annotations:
+        sidecar.istio.io/inject: 'true'
+    spec:
+      containers:
+      - name: istio-rollout
+        image: alexmt/rollouts-demo:blue
+        ports:
+        - name: http
+          containerPort: 80
+          protocol: TCP
+        resources:
+          requests:
+            memory: 32Mi
+            cpu: 5m
+        lifecycle:
+          preStop:
+            exec:
+              command: ["sleep", "5"]
+  strategy:
+    canary:
+      steps:
+      - setWeight: 20
+      - pause: {}
+
+      # reference a service and gateway, which populates DestinationRule and VirtualService 
+      istio:
+        service: istio-rollout-svc
+        gateway: istio-rollout-gateway
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: istio-rollout-svc
+  labels:
+    app: istio-rollout
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+  selector:
+    app: istio-rollout
+
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: istio-rollout-gateway
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - istio-rollout.dev.argoproj.io
