@@ -175,13 +175,13 @@ metadata:
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
-  project: bookinfo
+  project: default
   source:
     repoURL: https://github.com/jessesuen/k8s-deployments.git
     path: bookinfo
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: bookinfo
 
 # ---
 # apiVersion: v1
