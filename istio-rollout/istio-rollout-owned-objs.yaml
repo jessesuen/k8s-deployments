@@ -9,19 +9,19 @@ metadata:
     controller: true
     kind: Rollout
     name: istio-rollout
-    uid: f5645d32-ca34-11e9-9e69-42010aa8005f
+    uid: 6a18a0a5-cfca-11e9-9e69-42010aa8005f
 spec:
   # populated from rollout spec.strategy.canary.istio.service
   host: istio-rollout-svc
 
   # subsets contains a list of all current rollouts-pod-template-hash in the Rollout
   subsets:
-  - name: 5dfd6b49c4
+  - name: 67fb48cc58
     labels:
-      rollouts-pod-template-hash: 5dfd6b49c4
-  - name: 74cbbdb7f4
+      rollouts-pod-template-hash: 67fb48cc58
+  - name: 7bffb4d96b
     labels:
-      rollouts-pod-template-hash: 74cbbdb7f4
+      rollouts-pod-template-hash: 7bffb4d96b
 
 ---
 apiVersion: networking.istio.io/v1alpha3
@@ -35,7 +35,7 @@ metadata:
     controller: true
     kind: Rollout
     name: istio-rollout
-    uid: f5645d32-ca34-11e9-9e69-42010aa8005f
+    uid: 6a18a0a5-cfca-11e9-9e69-42010aa8005f
 spec:
   gateways:
   - istio-rollout-gateway # populated from rollout spec.strategy.canary.istio.gateway
@@ -46,9 +46,9 @@ spec:
   - route:
     - destination:
         host: istio-rollout-svc # populated from spec.strategy.canary.istio.service
-        subset: 5dfd6b49c4
+        subset: 67fb48cc58
       weight: 80
     - destination:
         host: istio-rollout-svc
-        subset: 74cbbdb7f4
+        subset: 7bffb4d96b
       weight: 20

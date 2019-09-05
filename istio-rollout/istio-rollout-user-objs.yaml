@@ -5,6 +5,7 @@ metadata:
   labels:
     app: istio-rollout
 spec:
+  replicas: 5
   revisionHistoryLimit: 3
   selector:
     matchLabels:
