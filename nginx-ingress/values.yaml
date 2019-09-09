@@ -3,5 +3,7 @@ nginx-ingress:
     extraArgs:
       enable-ssl-passthrough: "true"
     metrics:
+      enabled: true
       serviceMonitor:
-        enabled: "true"
+        enabled: true
+        namespace: prometheus-operator
