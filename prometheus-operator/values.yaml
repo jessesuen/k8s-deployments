@@ -4,3 +4,8 @@ prometheus-operator:
       enabled: false
     tlsProxy:
       enabled: false
+
+  kubeDns:
+    enabled: true
+  coreDns:
+    enabled: true
