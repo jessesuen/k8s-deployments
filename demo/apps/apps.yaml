@@ -183,27 +183,27 @@ spec:
     server: https://kubernetes.default.svc
     namespace: bookinfo
 
-# ---
-# apiVersion: v1
-# kind: Namespace
-# metadata:
-#   name: prometheus-operator
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: prometheus-operator
 
-# ---
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: prometheus-operator
-#   finalizers:
-#   - resources-finalizer.argocd.argoproj.io
-# spec:
-#   project: default
-#   source:
-#     repoURL: https://github.com/jessesuen/k8s-deployments.git
-#     path: prometheus-operator
-#   destination:
-#     server: https://kubernetes.default.svc
-#     namespace: prometheus-operator
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus-operator
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/jessesuen/k8s-deployments.git
+    path: prometheus-operator
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: prometheus-operator
 
 # ---
 # apiVersion: argoproj.io/v1alpha1
