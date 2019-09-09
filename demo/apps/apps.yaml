@@ -201,6 +201,8 @@ spec:
   source:
     repoURL: https://github.com/jessesuen/k8s-deployments.git
     path: prometheus-operator
+    plugin:
+      name: helm-v1.13
   destination:
     server: https://kubernetes.default.svc
     namespace: prometheus-operator

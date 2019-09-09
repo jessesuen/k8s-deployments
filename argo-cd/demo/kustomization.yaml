@@ -12,6 +12,7 @@ patchesStrategicMerge:
 - ../common/patches/argocd-cm.yaml
 - patches/argocd-cm.yaml
 - patches/argocd-rbac-cm.yaml
+- patches/argocd-repo-server.yaml
 
 resources:
 - ../common/resources/argocd-namespace.yaml

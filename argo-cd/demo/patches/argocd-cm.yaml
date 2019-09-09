@@ -17,3 +17,12 @@ data:
           - name: argoproj
             teams:
             - argo-cd-admins
+
+  configManagementPlugins: |
+    - name: helm-v1.13
+      init:
+        command: ["/bin/sh", "-c"]
+        args: ["helm init --client-only && helm dependency build"]
+      generate:
+        command: [sh, -c]
+        args: ["helm template . --kube-version v1.13 --name $ARGOCD_APP_NAME --namespace $ARGOCD_APP_NAMESPACE"]
