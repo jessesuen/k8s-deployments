@@ -8,4 +8,4 @@ prometheus-operator:
   kubeDns:
     enabled: true
   coreDns:
-    enabled: true
+    enabled: false
