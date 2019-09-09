@@ -20,7 +20,7 @@ resources:
 # - ../common/resources/argocd-server-metrics-servicemonitor.yaml
 # - ../common/resources/argocd-repo-server-metrics-servicemonitor.yaml
 
-images:
-- name: argoproj/argocd
-  newName: jessesuen/argocd
-  newTag: v1.2.0-44cb2ce
+# images:
+# - name: argoproj/argocd
+#   newName: jessesuen/argocd
+#   newTag: v1.2.0-44cb2ce
