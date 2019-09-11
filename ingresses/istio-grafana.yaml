@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: istio-grafana
+  namespace: istio-system
+  annotations:
+    nginx.ingress.kubernetes.io/auth-url: "https://$host/oauth2/auth"
+    nginx.ingress.kubernetes.io/auth-signin: "https://$host/oauth2/start?rd=$escaped_request_uri"
+spec:
+  rules:
+  - host: istio-grafana.dev.argoproj.io
+    http:
+      paths:  
+      - backend:
+          serviceName: grafana
+          servicePort: 3000
+        path: /
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: grafana
+  namespace: prometheus-operator
+  annotations:
+    nginx.ingress.kubernetes.io/auth-url: "https://$host/oauth2/auth"
+    nginx.ingress.kubernetes.io/auth-signin: "https://$host/oauth2/start?rd=$escaped_request_uri"
+spec:
+  rules:
+  - host: grafana.dev.argoproj.io
+    http:
+      paths:  
+      - backend:
+          serviceName: prometheus-operator-grafana
+          servicePort: 80
+        path: /

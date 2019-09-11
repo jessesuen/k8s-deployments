@@ -214,6 +214,28 @@ spec:
     - /metadata/labels
     - /spec
 
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: oauth2-proxy
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: oauth2-proxy
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/jessesuen/k8s-deployments.git
+    path: oauth2-proxy
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: oauth2-proxy
+
 # ---
 # apiVersion: argoproj.io/v1alpha1
 # kind: Application
