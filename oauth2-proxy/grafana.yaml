@@ -1,0 +1,15 @@
+oauth2-proxy:
+  config:
+    existingSecret: grafana-oauth
+  extraArgs:
+    provider: github
+    github-org: argoproj
+    cookie-secure: "false"
+    redirect-url: http://grafana.dev.argoproj.io/oauth2/callback
+  ingress:  
+    enabled: true  
+    path: /oauth2  
+    hosts:  
+    - grafana.dev.argoproj.io
+    annotations:  
+      kubernetes.io/ingress.class: nginx  

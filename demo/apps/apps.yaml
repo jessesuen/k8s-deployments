@@ -215,16 +215,10 @@ spec:
     - /spec
 
 ---
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: oauth2-proxy
-
----
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: oauth2-proxy
+  name: oauth2-proxy-grafana
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
@@ -232,9 +226,31 @@ spec:
   source:
     repoURL: https://github.com/jessesuen/k8s-deployments.git
     path: oauth2-proxy
+    helm:
+      valueFiles:
+      - grafana.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: oauth2-proxy
+    namespace: prometheus-operator
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: oauth2-proxy-istio-grafana
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/jessesuen/k8s-deployments.git
+    path: oauth2-proxy
+    helm:
+      valueFiles:
+      - istio-grafana.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: istio-system
 
 # ---
 # apiVersion: argoproj.io/v1alpha1
