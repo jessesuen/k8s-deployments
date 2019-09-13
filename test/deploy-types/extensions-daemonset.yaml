@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: extensions-daemonset
+spec:
+  selector:
+    matchLabels:
+      name: extensions-daemonset
+  template:
+    metadata:
+      labels:
+        name: extensions-daemonset
+    spec:
+      containers:
+      - name: nginx
+        image: k8s.gcr.io/nginx-slim:0.8

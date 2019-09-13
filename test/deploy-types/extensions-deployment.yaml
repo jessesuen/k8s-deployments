@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: extensions-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: extensions-deployment
+  template:
+    metadata:
+      labels:
+        app: extensions-deployment
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
