@@ -33,6 +33,8 @@ spec:
       steps:
       - setWeight: 20
       - pause: {}
+    nginx:
+      ingress: nginx-rollout-ingress
 
 ---
 apiVersion: v1
