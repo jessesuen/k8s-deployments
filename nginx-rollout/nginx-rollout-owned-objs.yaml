@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-rollout-5f6f75b987
+  labels:
+    app: nginx-rollout
+  ownerReferences:
+  - apiVersion: argoproj.io/v1alpha1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Rollout
+    name: nginx-rollout
+    uid: 8f40fdb1-d431-11e9-9e69-42010aa8005f
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: http
+  selector:
+    app: nginx-rollout
+    rollouts-pod-template-hash: 5f6f75b987
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-rollout-647db9cbf5
+  labels:
+    app: nginx-rollout
+  ownerReferences:
+  - apiVersion: argoproj.io/v1alpha1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Rollout
+    name: nginx-rollout
+    uid: 8f40fdb1-d431-11e9-9e69-42010aa8005f
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: http
+  selector:
+    app: nginx-rollout
+    rollouts-pod-template-hash: 647db9cbf5

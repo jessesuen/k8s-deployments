@@ -1,22 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
-  name: istio-rollout
+  name: nginx-rollout
 spec:
   replicas: 5
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: istio-rollout
+      app: nginx-rollout
   template:
     metadata:
       labels:
-        app: istio-rollout
-      annotations:
-        sidecar.istio.io/inject: 'true'
+        app: nginx-rollout
     spec:
       containers:
-      - name: istio-rollout
+      - name: nginx-rollout
         image: argoproj/rollouts-demo:blue
         ports:
         - name: http
@@ -36,36 +34,32 @@ spec:
       - setWeight: 20
       - pause: {}
 
-      # reference a service and gateway, which populates DestinationRule and VirtualService 
-      istio:
-        service: istio-rollout-svc
-        gateway: istio-rollout-gateway
-
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: istio-rollout-svc
+  name: nginx-rollout-svc
 spec:
   ports:
   - name: http
     port: 80
     targetPort: http
   selector:
-    app: istio-rollout
+    app: nginx-rollout
 
 ---
-apiVersion: networking.istio.io/v1alpha3
-kind: Gateway
+apiVersion: extensions/v1beta1
+kind: Ingress
 metadata:
-  name: istio-rollout-gateway
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  name: nginx-rollout-ingress
 spec:
-  selector:
-    istio: ingressgateway
-  servers:
-  - port:
-      number: 80
-      name: http
-      protocol: HTTP
-    hosts:
-    - istio-rollout.dev.argoproj.io
+  rules:
+  - host: nginx-rollout.dev.argoproj.io
+    http:
+      paths:
+      - backend:
+          serviceName: nginx-rollout-svc
+          servicePort: 80
+        path: /

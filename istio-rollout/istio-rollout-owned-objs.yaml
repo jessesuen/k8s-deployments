@@ -1,8 +1,35 @@
-apiVersion: networking.istio.io/v1alpha3
-kind: DestinationRule
+# apiVersion: networking.istio.io/v1alpha3
+# kind: DestinationRule
+# metadata:
+#   name: istio-rollout-destination
+#   # will be created and owned by rollout object
+#   ownerReferences:
+#   - apiVersion: argoproj.io/v1alpha1
+#     blockOwnerDeletion: true
+#     controller: true
+#     kind: Rollout
+#     name: istio-rollout
+#     uid: 8f40fdb1-d431-11e9-9e69-42010aa8005f
+# spec:
+#   # populated from rollout spec.strategy.canary.istio.service
+#   host: istio-rollout-svc
+
+#   # subsets contains a list of all current rollouts-pod-template-hash in the Rollout
+#   subsets:
+#   - name: 5f6f75b987
+#     labels:
+#       rollouts-pod-template-hash: 5f6f75b987
+#   - name: 647db9cbf5
+#     labels:
+
+---
+# duplicated from strategy.canary.istio.service
+apiVersion: v1
+kind: Service
 metadata:
-  name: istio-rollout-destination
-  # will be created and owned by rollout object
+  name: istio-rollout-5f6f75b987
+  labels:
+    app: istio-rollout
   ownerReferences:
   - apiVersion: argoproj.io/v1alpha1
     blockOwnerDeletion: true
@@ -11,24 +38,43 @@ metadata:
     name: istio-rollout
     uid: 8f40fdb1-d431-11e9-9e69-42010aa8005f
 spec:
-  # populated from rollout spec.strategy.canary.istio.service
-  host: istio-rollout-svc
+  ports:
+  - name: http
+    port: 80
+    targetPort: http
+  selector:
+    app: istio-rollout
+    rollouts-pod-template-hash: 5f6f75b987
 
-  # subsets contains a list of all current rollouts-pod-template-hash in the Rollout
-  subsets:
-  - name: 5f6f75b987
-    labels:
-      rollouts-pod-template-hash: 5f6f75b987
-  - name: 647db9cbf5
-    labels:
-      rollouts-pod-template-hash: 647db9cbf5
+---
+# duplicated from strategy.canary.istio.service
+apiVersion: v1
+kind: Service
+metadata:
+  name: istio-rollout-647db9cbf5
+  labels:
+    app: istio-rollout
+  ownerReferences:
+  - apiVersion: argoproj.io/v1alpha1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Rollout
+    name: istio-rollout
+    uid: 8f40fdb1-d431-11e9-9e69-42010aa8005f
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: http
+  selector:
+    app: istio-rollout
+    rollouts-pod-template-hash: 647db9cbf5
 
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: istio-rollout-virtualsvc
-  # will be created and owned by rollout object
   ownerReferences:
   - apiVersion: argoproj.io/v1alpha1
     blockOwnerDeletion: true
@@ -45,10 +91,8 @@ spec:
   # route will contain at most two rules, populated from the stable and canary pod hashes
   - route:
     - destination:
-        host: istio-rollout-svc # populated from spec.strategy.canary.istio.service
-        subset: 5f6f75b987
-      weight: 80
+        host: istio-rollout-5f6f75b987
+      weight: 90
     - destination:
-        host: istio-rollout-svc
-        subset: 647db9cbf5
-      weight: 20
+        host: istio-rollout-647db9cbf5
+      weight: 10
