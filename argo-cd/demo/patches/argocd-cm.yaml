@@ -26,3 +26,5 @@ data:
       generate:
         command: [sh, -c]
         args: ["helm template . --kube-version v1.13 --name $ARGOCD_APP_NAME --namespace $ARGOCD_APP_NAMESPACE"]
+
+  kustomize.buildOptions: --load_restrictor none
