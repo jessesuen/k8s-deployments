@@ -12,14 +12,13 @@ patchesStrategicMerge:
 - patches/argocd-repo-server.yaml
 
 resources:
-- github.com/argoproj/argo-cd//manifests/ha/cluster-install?ref=v1.3.0-rc1
+- github.com/argoproj/argo-cd//manifests/ha/cluster-install?ref=v1.3.0-rc4
 - ../common/resources/argocd-namespace.yaml
 - resources/argocd-server-ingress.yaml
 # - ../common/resources/argocd-metrics-servicemonitor.yaml
 # - ../common/resources/argocd-server-metrics-servicemonitor.yaml
 # - ../common/resources/argocd-repo-server-metrics-servicemonitor.yaml
 
-# images:
-# - name: argoproj/argocd
-#   newName: jessesuen/argocd
-#   newTag: v1.2.0-44cb2ce
+images:
+- name: argoproj/argocd
+  newTag: v1.3-latest
