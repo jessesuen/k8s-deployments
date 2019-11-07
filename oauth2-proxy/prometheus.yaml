@@ -1,0 +1,15 @@
+oauth2-proxy:
+  config:
+    existingSecret: prometheus-oauth
+  extraArgs:
+    provider: github
+    github-org: argoproj
+    cookie-secure: "false"
+    redirect-url: http://prometheus.dev.argoproj.io/oauth2/callback
+  ingress:  
+    enabled: true  
+    path: /oauth2  
+    hosts:  
+    - prometheus.dev.argoproj.io
+    annotations:  
+      kubernetes.io/ingress.class: nginx  

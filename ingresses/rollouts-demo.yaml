@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/auth-url: http://$host/oauth2/auth
+    nginx.ingress.kubernetes.io/auth-signin: http://$host/oauth2/start?rd=$request_uri
+  name: canary-demo
+  namespace: default
+spec:
+  rules:
+    - host: canary.dev.argoproj.io
+      http:
+        paths:
+          - backend:
+              serviceName: canary-demo
+              servicePort: 80
+            path: /
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: rollouts-demo-oauth
+  namespace: default
+
