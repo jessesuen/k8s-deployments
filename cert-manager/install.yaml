@@ -5,6 +5,8 @@ kind: CustomResourceDefinition
 metadata:
   creationTimestamp: null
   name: challenges.acme.cert-manager.io
+  annotations:
+    argocd.argoproj.io/sync-options: Validate=false
 spec:
   additionalPrinterColumns:
   - JSONPath: .status.state
@@ -1383,6 +1385,8 @@ kind: CustomResourceDefinition
 metadata:
   creationTimestamp: null
   name: orders.acme.cert-manager.io
+  annotations:
+    argocd.argoproj.io/sync-options: Validate=false
 spec:
   additionalPrinterColumns:
   - JSONPath: .status.state
@@ -1593,6 +1597,8 @@ kind: CustomResourceDefinition
 metadata:
   creationTimestamp: null
   name: certificaterequests.cert-manager.io
+  annotations:
+    argocd.argoproj.io/sync-options: Validate=false
 spec:
   additionalPrinterColumns:
   - JSONPath: .status.conditions[?(@.type=="Ready")].status
@@ -1784,6 +1790,8 @@ kind: CustomResourceDefinition
 metadata:
   creationTimestamp: null
   name: certificates.cert-manager.io
+  annotations:
+    argocd.argoproj.io/sync-options: Validate=false
 spec:
   additionalPrinterColumns:
   - JSONPath: .status.conditions[?(@.type=="Ready")].status
@@ -2029,6 +2037,8 @@ kind: CustomResourceDefinition
 metadata:
   creationTimestamp: null
   name: clusterissuers.cert-manager.io
+  annotations:
+    argocd.argoproj.io/sync-options: Validate=false
 spec:
   group: cert-manager.io
   names:
@@ -3694,6 +3704,8 @@ kind: CustomResourceDefinition
 metadata:
   creationTimestamp: null
   name: issuers.cert-manager.io
+  annotations:
+    argocd.argoproj.io/sync-options: Validate=false
 spec:
   group: cert-manager.io
   names:
