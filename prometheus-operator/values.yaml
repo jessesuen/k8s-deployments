@@ -4,7 +4,9 @@ prometheus-operator:
       enabled: false
     tlsProxy:
       enabled: false
-
+  grafana:
+    testFramework:
+      enabled: false
   kubeDns:
     enabled: true
   coreDns:
